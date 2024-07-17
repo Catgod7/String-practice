@@ -21,7 +21,7 @@ def extract_number(input_string):
 
     return number_part
 
-# 测试示例
+# 测试
 input_string1 = "abcd123.456"
 input_string2 = "abcd123"
 result1 = extract_number(input_string1)
