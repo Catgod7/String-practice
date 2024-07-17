@@ -1,0 +1,17 @@
+<html>
+<script>
+const format = (str)=>{
+str = str.replace(/^([a-zA-Z]*)(\d* |\d*\.?\d+)$/g, "$2");
+if(str.indexOf(".") > -1){
+	str = str.slice(0, str.indexOf(".") + 3)
+}else{
+str+=".00"
+console.log(str)
+}
+return str;
+}
+
+format("abcd123")
+</script>
+
+</html>
