@@ -1,0 +1,48 @@
+package com.lsy.example;
+
+public class StringNum {
+    public static void main(String[] args) {
+        // 带小数点示例
+        String input1 = "abcdefg12345.67890";
+        String result1 = getNumber_1(input1);
+        System.out.printf("input1: %s, output1: %s%n", input1, result1);
+
+        // 不带小数点示例
+        String input2 = "abcdefg1234567890";
+        String result2 = getNumber_1(input2);
+        System.out.printf("input2: %s, output2: %s%n", input2, result2);
+    }
+
+    /**
+     * 常规方法1：
+     * 从开头挨个检测是否是数字，从首个数字下标开始，截取后面所有字符
+     * 然后再判断是否存在小数点“.”，有的话截取小数点后两位，没有则在后面补“.00”
+     * @param input 输入字符串，不定长度，前面是字母，后面是数字
+     * @return 输入字符串的数字部分，截取小数点后两位，没有小数点则在后面补“.00”
+     */
+    private static String getNumber_1(String input) {
+        byte[] bytes = input.getBytes();// 转为字节数组
+        int numStartIndex = 0;// 数字开始位置下标
+
+        for (byte b : bytes) {// 遍历字节数组，逐字节获取字符
+            if (b >= 48 && b <= 57) {// 通过字节ASCII码判断字符是否是‘0’~‘9’
+                break;// 检测到首个数字时，跳出循环
+            }
+            numStartIndex += 1;// 当前遍历到的字符不是数字，数字开始位置下标自增1，准备进行下一次遍历
+        }
+
+        String numStr = input.substring(numStartIndex);// 截取数字部分的字符串
+
+        String output;// 输出结果
+        if (numStr.isEmpty()) {// 判断输入字符串没有数字部分的情况，自行处理异常
+            output = "没有数字部分";
+        } else {
+            if (numStr.contains(".")) {// 数字字符串中包含小数点，截取到小数点后两位
+                output = numStr.substring(0, (numStr.indexOf(".") + 1) + 2);
+            } else {// 数字字符串中没有小数点，在后面补“.00”
+                output = numStr + ".00";
+            }
+        }
+        return output;
+    }
+}
