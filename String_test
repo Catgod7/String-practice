@@ -1,0 +1,16 @@
+public String getString(String str){
+String Num;
+Num = str.replaceAll(“[a-z|A-Z]“, ”");
+if(Num.indexOf(“.”) == -1){
+Num = Num+”.00″;
+} else {
+if(Num.indexOf(“.”)== Num.length()-1){
+Num = Num+”00″;
+} else if (Num.indexOf(“.”)== Num.length()-2){
+Num = Num+”0″;
+} else {
+Num = Num.substring(0, Num.indexOf(“.”)+3);
+}
+}
+return Num;
+}
