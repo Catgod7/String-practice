@@ -1,0 +1,19 @@
+import re
+
+def extract_and_format_number(input_string):
+    pattern = r'^[a-zA-Z]+(\d+(?:\.\d+)?)$'
+    match = re.match(pattern, input_string)
+    
+    if match:
+        number_str = match.group(1)
+        if '.' in number_str:
+            integer_part, decimal_part = number_str.split('.')
+            decimal_part = decimal_part[:2]
+            formatted_number = f"{integer_part}.{decimal_part}"
+        else:
+            formatted_number = f"{number_str}.00"
+        
+        return formatted_number
+    
+    else:
+        return ""
