@@ -1,0 +1,22 @@
+###################################################################################################
+#  Filename	: Goddy_45260203	
+#  Author:    Goddy Zhang
+#  Abstract : Use BigQuery to feed the function ( can straightly run in Google Could)
+#  -------------------------------------
+#  Modification History :
+#  Version	      Date	               Author	                       Description	
+#  1.0	          17-Ju1-2024	         Goddx Zhang	                 BigQuery to feed the function	
+###################################################################################################
+
+WITH TMP AS
+(
+SELECT  'abcd123.456'	          AS SAMPLE_DATA UNION ALL	
+SELECT	'aAcdDDS25779761'	      AS SAMPLE_DATA UNION ALL	
+SELECT	'acdDDS25.2697612'	    AS SAMPLE_DATA UNION ALL	
+SELECT	'aADDS25779.102398765'	AS SAMPLE_DATA	
+)
+SELECT
+  SAMPLE_DATA
+,  SUBSTR (REGEXP_REPLACE(CASE INSTR (SAMPLE_DATA,'.',1) WHEN 0 THEN SAMPLE_DATA || '.00' ELSE SAMPLE_DATA || '00' END,'[a-zA-Z]',''),1,INSTR (REGEXP_REPLACE (CASE INSTR (SAMPLE_DATA, '.',1) 
+   WHEN O THEN SAMPLE_DATA || '.00' ELSE SAMPLE_DATA || '00' END,'[a-zA-Z]',''),'.',l)+2) AS RESULT_DATA 
+FROM TMP
