@@ -1,0 +1,41 @@
+Option Explicit
+
+Function ExtractNumber(str As String) As String
+
+  Dim numStart, numEnd, i As Integer
+  Dim numStr As String
+
+  For i = 1 To Len(str)
+    If IsNumeric(Mid(str, i, 1)) Then
+        numStart = i
+        Exit For
+    End If
+  Next i
+
+
+  For i = numStart To Len(str)
+    If Not IsNumeric(Mid(str, i, 1)) And Mid(str, i, 1) <> "." Then
+        numEnd = i - 1
+        Exit For
+    End If
+  Next i
+
+
+  If numEnd > 0 Then
+    numStr = Mid(str, numStart, numEnd - numStart + 1)
+  Else
+    numStr = Mid(str, numStart)
+  End If
+
+
+  If InStr(numStr, ".") = 0 Then
+    numStr = numStr & ".00"
+  End If
+
+
+  If InStr(numStr, ".") > 0 Then
+    numStr = Left(numStr, InStr(numStr, ".") + 2)
+  End If
+
+  ExtractNumber = numStr
+End Function
