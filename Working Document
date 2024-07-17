@@ -1,0 +1,31 @@
+def extract_number(txt):
+    number = ""
+    result = ""
+    first_num = 0
+    
+    for i in range(len(txt)):
+        if txt[i].isdigit():
+            first_num = i
+            break
+    
+    number = txt[first_num:]
+    decimal_place = number.find(".")
+    
+    if decimal_place>=0 and decimal_place >= len(number)-2:
+        result = number[0:decimal_place+2]+"0"
+    elif decimal_place>=0 and decimal_place < len(number)-2:
+        result = number[0:decimal_place+3]
+    elif decimal_place == -1:
+        result = number+".00"
+    return result
+
+#running result
+input1 = "abc1234.4567"
+input2 = "abcd123"
+
+number1 = extract_number(input1)
+number2 = extract_number(input2)
+
+#output result
+print(number1)
+print(number2)
