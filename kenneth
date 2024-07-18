@@ -1,0 +1,25 @@
+def extract_number(input_string):
+    # 寻找数字开始的位置
+    num_start = 0
+    for i in range(len(input_string)):
+        if input_string[i].isdigit() or input_string[i] == '.':
+            num_start = i
+            break
+
+    # 提取数字部分
+    number = input_string[num_start:]
+    
+    # 如果数字包含小数点
+    if '.' in number:
+        decimal_index = number.index('.')
+        decimal_part = number[decimal_index:decimal_index+3]
+        return decimal_part
+    # 如果数字不包含小数点，添加两位小数
+    else:
+        return number + ".00"
+
+# 测试
+input_str1 = "abcd123.456"
+print(extract_number(input_str1))  # 输出 "123.45"
+input_str2 = "abcd123"
+print(extract_number(input_str2))  # 输出 "123.00"
